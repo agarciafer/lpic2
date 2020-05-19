@@ -1,0 +1,21 @@
+mkdir /opt/scripts
+cd /opt/scripts
+chmod 700 supervisamem
+./supervisamem
+tail -f /var/log/supervisamem.log
+--------------------------------------------------
+/etc/init.d/iniciar-supervisamem
+chmod 700 /etc/init.d/iniciar-supervisamem
+service iniciar-supervisamem start
+tail -f /var/log/supervisamem.log
+service iniciar-supervisamem stop
+---------------------------------------------------------
+chkconfig --level 5 iniciar-supervisamem on
+Tendremos que tener:
+vi /etc/init.d/iniciar-supervisamem
+#!/bin/bash
+# chkconfig: - 98 10    
+# description: Supervisamem
+cd /etc/rc5.d
+S98iniciar-supervisamem
+
