@@ -1,0 +1,23 @@
+$ORIGIN .
+$TTL 259200	; 3 days
+curso.esp		IN SOA	sercentos7.curso.esp. root.curso.esp. (
+				2008012003 ; serial
+				86400      ; refresh (1 day)
+				7200       ; retry (2 hours)
+				2592000    ; expire (4 weeks 2 days)
+				172800     ; minimum (2 days)
+				)
+			NS	orion.curso.esp.
+			NS	sercentos7.curso.esp.
+			MX	3 sercentos7.curso.esp.
+$ORIGIN curso.esp.
+agendapc5		CNAME	pc5
+curso			A	192.168.1.3
+fresnosa		CNAME	sercentos7
+localhost		A	127.0.0.1
+pc2			A	192.168.1.89
+portalpc12		CNAME	pc12
+portatil		A	192.168.1.2
+sercentos7			A	192.168.1.150
+orion			A	192.168.1.152
+webalizerpc12		CNAME	pc12

@@ -1,0 +1,21 @@
+$ORIGIN .
+$TTL 259200	; 3 days
+dominio1.esp		IN SOA	trasgu.dominio1.esp. root.dominio1.esp. (
+				2007040201 ; serial
+				86400      ; refresh (1 day)
+				7200       ; retry (2 hours)
+				2592000    ; expire (4 weeks 2 days)
+				172800     ; minimum (2 days)
+				)
+			NS	trasgu.dominio1.esp.
+			MX	0 trasgu.curso.esp.
+$ORIGIN dominio1.esp.
+agendapc5		CNAME	pc5
+fresnosa		CNAME	trasgu
+localhost		A	127.0.0.1
+portalpc12		CNAME	pc12
+$TTL 21600	; 6 hours
+portatil		A	192.168.50.2
+$TTL 259200	; 3 days
+trasgu			A	192.168.50.150
+webalizerpc12		CNAME	pc12

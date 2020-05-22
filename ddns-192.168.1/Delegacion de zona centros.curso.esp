@@ -1,0 +1,23 @@
+A continuación se presenta la configuración realizada en el servidor ser1.curso.es:
+
+Named.conf
+
+zone "centros.curso.esp"{
+        type slave;
+        file "sec/db.centros.curso";
+        masters { 192.168.1.10; };
+};
+
+zone "7.37.10.IN-ADDR.ARPA"{
+        type slave;
+        file "sec/db.192.168.1";
+        masters { 192.168.1.10; };
+};
+
+Configuración en la zona db.curso:
+;; Definimos al servidor srdc01.curso.esp como servidor de nombres.
+curso.esp.             IN      NS      srdc01.curso.esp.
+
+;; Delegacion del subdominio centros.curso.esp
+centros                 IN      NS      srdc01.centros.curso.esp.
+srdc01.centros.curso.esp.              IN      A       192.168.1.10
