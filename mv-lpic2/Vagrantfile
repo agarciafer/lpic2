@@ -1,0 +1,45 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+##Ususario:vagrant
+##Pass: vagrant
+
+##user:root
+##pass:vagrant
+Vagrant.configure("2") do |config|
+  config.vm.define "centos7" do |centos7|
+  config.vm.boot_timeout = 400
+    centos7.vm.box = "bento/centos-7.2"
+    #centos7.vm.network "forwarded_port", guest: 3000, host: 3002, auto_correct: true
+    centos7.vm.network "private_network", ip: "192.168.2.5"
+    centos7.vm.hostname = "sercentos7"
+    
+  end
+
+  config.vm.define "debian" do |debian|
+    debian.vm.box = "bento/debian-10"
+	config.vm.boot_timeout = 400
+    #debian.vm.network "forwarded_port", guest: 3000, host: 3001, auto_correct: true
+    debian.vm.network "private_network", ip: "192.168.2.10"
+    debian.vm.hostname = "debian10"
+	#debian.vm.provision "shell", inline: <<-SHELL
+    # SHELL
+    
+  end
+
+
+config.vm.define "centos6" do |centos6|
+    centos6.vm.box = "bento/centos-6.7"
+	config.vm.boot_timeout = 400
+    #debian.vm.network "forwarded_port", guest: 3000, host: 3001, auto_correct: true
+    centos6.vm.network "private_network", ip: "192.168.2.152"
+    centos6.vm.hostname = "orion"
+	centos6.vm.provision "shell", inline: <<-SHELL
+	 rm -rf /etc/yum.repos.d/CentOS-Base.repo
+	 cp /vagrant/CentOS-Base.repo /etc/yum.repos.d/
+	 yum clean all
+     SHELL
+    
+  end
+
+end

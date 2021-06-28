@@ -1,0 +1,138 @@
+
+##Configuring NTP using chrony
+yum install chrony
+apt install chrony
+
+# systemctl start chronyd
+# systemctl enable chronyd
+
+# vi  /etc/chrony.conf
+server 0.es.pool.ntp.org iburst
+server 1.es.pool.ntp.org iburst
+server 2.es.pool.ntp.org iburst
+server 3.es.pool.ntp.org iburst
+
+
+# systemctl start chronyd
+# systemctl enable chronyd
+
+Mostrar la información sobre NTP
+# chronyc sources -v
+--------------------------------------------------------------------------------------------------------------
+##En centos7
+yum install ntp -y
+timedatectl set-timezone "Europe/Madrid"
+localectl
+localectl set-locale LANG=es_ES.utf8
+localectl set-keymap es
+localectl
+
+vi /etc/ntp.conf
+server 0.es.pool.ntp.org iburst
+server 1.es.pool.ntp.org iburst
+server 2.es.pool.ntp.org iburst
+server 3.es.pool.ntp.org iburst
+
+systemctl start ntpd
+systemctl enable ntpd
+timedatectl set-ntp true
+ntpq -p
+
+
+##En centos6
+yum install ntp -y
+
+cp /etc/localtime /root
+rm -rf /etc/localtime
+ln -s /usr/share/zoneinfo/Europe/Madrid  /etc/localtime
+
+
+vi /etc/ntp.conf
+server 0.es.pool.ntp.org iburst
+server 1.es.pool.ntp.org iburst
+server 2.es.pool.ntp.org iburst
+server 3.es.pool.ntp.org iburst
+
+
+service ntpd start
+chkconfig --level 3 ntpd on
+
+
+##En debian10
+apt-get update
+apt-get install ntp -y
+timedatectl set-timezone "Europe/Madrid"
+timedatectl
+localectl
+localectl set-locale LANG=es_ES.utf8
+localectl set-keymap es
+localectl
+
+vi /etc/ntp.conf
+server 0.es.pool.ntp.org iburst
+server 1.es.pool.ntp.org iburst
+server 2.es.pool.ntp.org iburst
+server 3.es.pool.ntp.org iburst
+
+systemctl start ntp
+systemctl enable ntp
+timedatectl set-ntp true
+ntpq -p
+------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+##Sercentos7 
+hostnamectl set-hostname sercentos7.curso.esp
+cat /etc/hostname
+sercentos7.curso.esp
+
+cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.2.5     sercentos7.curso.esp    sercentos7
+192.168.2.152   orion.curso.esp  orion
+192.168.2.10   debian10.curso.esp  orion
+
+
+
+##debian10
+hostnamectl set-hostname debian10.curso.esp
+cat /etc/hostname
+sercentos7.curso.esp
+
+cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.2.10   debian10.curso.esp  debian10
+192.168.2.5     sercentos7.curso.esp    sercentos7
+192.168.2.152   orion.curso.esp  orion
+
+
+##orion###
+vi  /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=orion.curso.esp
+
+cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.2.5     sercentos7.curso.esp    sercentos7
+192.168.2.152   orion.curso.esp  orion
+192.168.2.10   debian10.curso.esp  debian10
+
+
+
+
+
+----------------------------------------------------------------
+##En las dos maquinas virutales centos7 y centos6 tener disabled selinux
+
+ vi  /etc/sysconfig/selinux
+
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=disabled
+
